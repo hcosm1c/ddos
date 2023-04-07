@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-#Code by cosm1c & CR4ZY
+#env
 import argparse
 import random
 import socket
