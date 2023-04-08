@@ -16,7 +16,24 @@ ap.add_argument("-r", "--threads", type=int, default=5)
 args = vars(ap.parse_args())
 
 os.system("clear")
+
+banner = """
+
+
+███████╗ ██████╗  ██████╗██╗   ██╗███████╗  
+██╔════╝██╔═══██╗██╔════╝██║   ██║██╔════╝
+█████╗  ██║   ██║██║     ██║   ██║███████╗
+██╔══╝  ██║   ██║██║     ██║   ██║╚════██║
+██║     ╚██████╔╝╚██████╗╚██████╔╝███████║  NET v1.1
+╚═╝      ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝  
+
+
+                """
+z = random.choice((Fore.LIGHTMAGENTA_EX + banner, Fore.LIGHTCYAN_EX + banner, Fore.LIGHTRED_EX + banner))
+print(z)
+print(Fore.RESET + "")
 time.sleep(5)
+
 
 ip = args['ip']
 port = args['port']
@@ -54,6 +71,9 @@ def run2():
             s.close()
             print("[*] Error")
 
+
+
+
 for y in range(threads):
     if choice == 'Y':
         th = threading.Thread(target = run)
@@ -61,4 +81,5 @@ for y in range(threads):
     else:
         th = threading.Thread(target = run2)
         th.start()
+
 
