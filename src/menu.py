@@ -7,6 +7,8 @@ import os
 import time
 from colorama import *
 
+os.system("clear")
+
 #ARGS
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--ip", required=True, type=str)
