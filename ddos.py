@@ -15,7 +15,7 @@ upt = https.find(class_='blob-code blob-code-inner js-file-line').get_text()
 
 def gitve():
     if upt == "1.2":
-        print("SOURCE ATUALIZADO")
+        print()
     else:
         print("SOURCE DESATUALIZADO, ATUALIZANDO...")
         os.chdir("/root")
