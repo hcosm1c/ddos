@@ -5,13 +5,7 @@ import socket
 import threading
 import os
 import time
-
 from colorama import *
-from updates import gitve
-
-#GITVE
-os.system("clear")
-gitve()
 
 #ARGS
 ap = argparse.ArgumentParser()
@@ -22,7 +16,7 @@ ap.add_argument("-t", "--times", type=int, default=100)
 ap.add_argument("-r", "--threads", type=int, default=5)
 args = vars(ap.parse_args())
 
-
+os.system("clear")
 
 #BANNER
 banner = """
