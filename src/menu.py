@@ -1,13 +1,19 @@
 #env
+#!/bin/sh
 import argparse
 import random
 import socket
 import threading
 import os
 import time
-from colorama import *
+import sys
+from colorama import Fore
 
+#GITVE
 os.system("clear")
+sys.path.insert(1, './src')
+from verup import gitve
+gitve()
 
 #ARGS
 ap = argparse.ArgumentParser()
@@ -18,7 +24,7 @@ ap.add_argument("-t", "--times", type=int, default=100)
 ap.add_argument("-r", "--threads", type=int, default=5)
 args = vars(ap.parse_args())
 
-os.system("clear")
+
 
 #BANNER
 banner = """
